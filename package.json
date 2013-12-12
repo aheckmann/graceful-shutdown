@@ -9,7 +9,8 @@
   "author": "Aaron Heckmann <aaron.heckmann+github@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "once-upon": "0.0.1"
+    "once-upon": "0.0.1",
+    "debug": "0.7.4"
   },
   "devDependencies": {
     "mocha": "~1.15.1"

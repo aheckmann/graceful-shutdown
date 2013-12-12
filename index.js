@@ -1,6 +1,7 @@
 'use strict';
 
 var onceUpon = require('once-upon');
+var debug = require('debug')('graceful-shutdown');
 
 module.exports = exports = GracefulShutdown;
 
@@ -52,6 +53,7 @@ GracefulShutdown.prototype.finally = function (cb) {
  */
 
 GracefulShutdown.prototype._shutdown = function _shutdown () {
+  debug('_shutdown');
   this.server.close();
   if (this.cb) this.cb();
 };
