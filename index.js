@@ -54,7 +54,7 @@ GracefulShutdown.prototype.finally = function (cb) {
 
 GracefulShutdown.prototype._shutdown = function _shutdown () {
   debug('_shutdown');
-  if (this.cb) this.server.on('close', cb);
+  if (this.cb) this.server.on('close', this.cb);
   this.server.close();
 };
 
