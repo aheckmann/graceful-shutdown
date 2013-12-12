@@ -82,14 +82,22 @@ describe('graceful-shutdown', function() {
         called++;
       });
 
+      var closed = 0;
+      s.on('close', function() {
+        closed++;
+      });
+
       process.emit('SIGCAKE');
       process.emit('SIGCOOKIE');
       process.emit('SIGPIE');
       process.emit('SIGPIE');
       process.emit('SIGTCAKE');
 
-      assert.equal(1, called);
-      done();
+      setTimeout(function() {
+        assert.equal(1, called);
+        assert.equal(1, closed);
+        done();
+      }, 100);
     });
   });
 });
