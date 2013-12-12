@@ -1,5 +1,4 @@
 #graceful-shutdown
-===================
 
 Shuts down an `HTTP{s}Server` gracefully upon the first specified signal received by the process and executes the optional callback.
 
