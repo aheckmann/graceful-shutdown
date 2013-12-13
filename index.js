@@ -38,7 +38,7 @@ GracefulShutdown.prototype.upon = function upon (signals) {
 /**
  * Sets the callback to call upon shutdown.
  *
- * @param {Functin} cb
+ * @param {Function} cb
  */
 
 GracefulShutdown.prototype.finally = function (cb) {
