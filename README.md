@@ -42,7 +42,7 @@ var gs = GracefulShutdown(server).upon(['SIGTERM', 'SIGINT']);
 
 #### GracefulShutdown#finally()
 
-Accepts a callback function which will be called when `server.close()` is executed. Note, this is not a listener for the `server!close` event. If you want to listen for the `server!close` event you must add the listener yourself.
+Accepts a callback function which will be called when `server.close()` is executed. Note, this is not a listener for the server `close` event. If you want to listen for the server `close` event you must add the listener yourself.
 
 ```js
 server.on('close', console.log.bind(console, 'the server is closed'));
