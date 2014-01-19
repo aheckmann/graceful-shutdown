@@ -14,5 +14,13 @@
   },
   "devDependencies": {
     "mocha": "~1.15.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/recurly/graceful-shutdown.git"
+  },
+  "homepage": "https://github.com/recurly/graceful-shutdown",
+  "bugs": {
+    "url":"https://github.com/recurly/graceful-shutdown/issues/new"
   }
 }
