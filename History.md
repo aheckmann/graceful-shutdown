@@ -1,4 +1,13 @@
 
+0.1.0 / 2014-01-20
+==================
+
+ * changed; rename finally(cb) -> on("shutting-down", cb)
+ * package; add helpful fields to package.json
+ * docs; document the 2nd argument
+ * docs; update close event style
+ * docs; specify net server
+
 0.0.4 / 2013-12-13
 ==================
 

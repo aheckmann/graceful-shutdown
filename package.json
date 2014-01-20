@@ -1,6 +1,6 @@
 {
   "name": "graceful-shutdown",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Gracefully shutdown a server upon receiving the specified signal(s)",
   "main": "index.js",
   "scripts": {
