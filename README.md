@@ -52,6 +52,12 @@ GracefulShutdown(server).upon('SIGTERM SIGINT').on('shutting-down', function() {
 server.on('close', console.log.bind(console, 'the server is closed'));
 ```
 
+An alternative way to register a callback for the `shutting-down` event is to pass it as the second argument to GracefulShutdown.
+
+```js
+GracefulShutdown(server, callback).upon('SITERM SIGINT');
+```
+
 ### install
 
 ```
