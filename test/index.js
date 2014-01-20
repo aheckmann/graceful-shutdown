@@ -65,20 +65,20 @@ describe('graceful-shutdown', function() {
     });
   });
 
-  describe('#finally', function() {
-    it('assigns a callback to execute when the server is closed', function(done) {
+  describe('shutting-down event', function() {
+    it('is emitted when the server is being closed', function(done) {
       var s = server();
-      gs(s).upon('candy gum').finally(function() {
+      gs(s).upon('candy gum').on('shutting-down', function() {
         done();
       });
       process.emit('gum');
     });
 
-    it('callback is only executed once regardless of how many times each event fires', function(done) {
+    it('emits once regardless of how many times each source event fires', function(done) {
       var s = server();
       var called = 0;
 
-      gs(s).upon('SIGCAKE SIGPIE SIGCOOKIE').finally(function() {
+      gs(s).upon('SIGCAKE SIGPIE SIGCOOKIE').on('shutting-down', function() {
         called++;
       });
 
