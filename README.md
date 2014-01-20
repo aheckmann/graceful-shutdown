@@ -9,8 +9,7 @@ var gracefullyShutdown = require('graceful-shutdown');
 
 var server = http.createServer();
 
-gracefullyShutdown(server).upon('SIGINT SIGTERM').finally(function() {
-  console.log('I am an optional callback');
+gracefullyShutdown(server).upon('SIGINT SIGTERM').on('shutting-down', function() {
   console.log('server#close() has been called');
 });
 ```
@@ -40,18 +39,18 @@ var gs = GracefulShutdown(server).upon('SIGTERM SIGINT');
 var gs = GracefulShutdown(server).upon(['SIGTERM', 'SIGINT']);
 ```
 
-#### GracefulShutdown#finally()
+#### Events
 
-Accepts a callback function which will be called when `server.close()` is executed. Note, this is not a listener for the server `close` event. If you want to listen for the server `close` event you must add the listener yourself.
+The GracefulShutdown instance will emit a `shutting-down` event when `server.close()` has been called.
+Note, this is not a listener for the [server close](http://nodejs.org/api/net.html#net_server_close_callback) event. If you want to listen for the server `close` event you must add the listener yourself.
 
 ```js
-server.on('close', console.log.bind(console, 'the server is closed'));
-
-GracefulShutdown(server).upon('SIGTERM SIGINT').finally(function(){
+GracefulShutdown(server).upon('SIGTERM SIGINT').on('shutting-down', function() {
   console.log('server.close() has been called');
 });
-```
 
+server.on('close', console.log.bind(console, 'the server is closed'));
+```
 
 ### install
 

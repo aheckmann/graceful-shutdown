@@ -1,6 +1,8 @@
 'use strict';
 
 var onceUpon = require('once-upon');
+var Emitter = require('events').EventEmitter;
+var inherits = require('util').inherits;
 var debug = require('debug')('graceful-shutdown');
 
 module.exports = exports = GracefulShutdown;
@@ -20,8 +22,14 @@ function GracefulShutdown (server, cb) {
   }
 
   this.server = server;
-  this.cb = cb;
+  if (cb) this.on('shutting-down', cb);
 };
+
+/*!
+ * Inherit from EventEmitter
+ */
+
+inherits(GracefulShutdown, Emitter);
 
 /**
  * Listens for `signals` emitted on the `process` to
@@ -35,17 +43,6 @@ GracefulShutdown.prototype.upon = function upon (signals) {
   return this;
 };
 
-/**
- * Sets the callback to call upon shutdown.
- *
- * @param {Function} cb
- */
-
-GracefulShutdown.prototype.finally = function (cb) {
-  this.cb = cb;
-  return this;
-};
-
 /*!
  * Shuts down the server gracefully and executes our cb
  *
@@ -55,6 +52,6 @@ GracefulShutdown.prototype.finally = function (cb) {
 GracefulShutdown.prototype._shutdown = function _shutdown () {
   debug('_shutdown');
   this.server.close();
-  if (this.cb) this.cb();
+  this.emit('shutting-down');
 };
 
